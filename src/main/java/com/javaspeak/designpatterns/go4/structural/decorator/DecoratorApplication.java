@@ -60,7 +60,7 @@ package com.javaspeak.designpatterns.go4.structural.decorator;
  * 
  * @author John Dickerson - 20 February 2020
  */
-public class ApplicationDecorator {
+public class DecoratorApplication {
 
     private Transformer<String> transformer;
 
@@ -79,12 +79,9 @@ public class ApplicationDecorator {
     }
 
 
-    /**
-     * @param args
-     */
     public static void main( String[] args ) {
 
-        ApplicationDecorator application = new ApplicationDecorator();
+        DecoratorApplication application = new DecoratorApplication();
         application.buildDecorators();
         application.transform();
     }

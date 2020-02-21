@@ -31,47 +31,52 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.structural.decorator;
+package com.javaspeak.designpatterns.go4.behavioural.command;
+
+import java.util.Map;
 
 /**
- * This interface is central to this example's Decorator pattern. This Transformer (Decorator) has 
- * a transform method which can transform data of type E.
+ * The RequestProcessor calls the execute(..) method of Command passing in the request and 
+ * response to it.
  * <p>
- * The implementation of this Transformer interface can optionally decorate another Transformer.
- * <p>
- * What the decoration means is that the implementation of the transform( E input ) method should 
- * do its transformation on E and then if a Transformer has been previously added via its
- * addDecoration( Transformer transformer ) method then it should call the transform( E input ) 
- * method of that transformer.
- * <p>
- * This allows many Decorators to be chained together, each Decorator holding a reference to 
- * (decorating) the next Decorator. The last Decorator in the chain will not hold a reference to 
- * another Decorator.
+ * The Command to call the execute() method on is retrieved from the RequestType stored in the 
+ * request.
  * 
- * @author John Dickerson - 20 February 2020
+ * @author John Dickerson - 21 Feb 2020
  */
-public interface Transformer<E> {
+public interface Request {
 
     /**
-     * The implementation of this method should perform a transformation on the input.  If the 
-     * Transformer holds a reference to another Transformer it should then call transform( E input ) 
-     * on the Transformer.
+     * The requestId provides a unique identify for the request. The current implementation does 
+     * not use it.
      *
-     * @param input 
-     *     The input data to transform
-     *      
-     * @return data
-     *     The transformed data
+     * @return requestId 
+     *      The requestId unique identifies the request
      */
-    public E transform( E input );
+    public Long getRequestId();
 
 
     /**
-     * The implementation of this method needs to add a reference to the next transformer in 
-     * the chain.
+     * The RequestType holds the mapping to a Command
      *
-     * @param transformer 
-     *     The next transformer in the chain.
+     * The RequestProcessor uses the RequestType from a Request to retrieve the Command to call 
+     * execute(..) on.
+     *
+     * @return RequestType 
+     *      RequestType holds the mapping to a Command
      */
-    public void addDecoration( Transformer<E> transformer );
+    public RequestType getRequestType();
+
+
+    /**
+     * Retrieves a map of Request attributes which are String key value pairs.
+     * <p>
+     * The idea is that the execute(..) method of Command will read the request attributes; process 
+     * them and then return them in a new map via the callback method handleResponse(..) in the 
+     * response argument of the execute(..) method
+     *
+     * @return Map 
+     *      Map of modified attributes
+     */
+    public Map<String, String> getRequestAttributes();
 }

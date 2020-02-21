@@ -31,47 +31,34 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.structural.decorator;
+package com.javaspeak.designpatterns.go4.behavioural.command;
+
 
 /**
- * This interface is central to this example's Decorator pattern. This Transformer (Decorator) has 
- * a transform method which can transform data of type E.
+ * The application calling code calls the processRequest(..) method of RequestProcessor. The 
+ * implementation of processRequest retrieves the RequestType from the request and from the 
+ * RequestType gets the Command that is mapped to it.  It then calls the execute method of the 
+ * Command.
  * <p>
- * The implementation of this Transformer interface can optionally decorate another Transformer.
- * <p>
- * What the decoration means is that the implementation of the transform( E input ) method should 
- * do its transformation on E and then if a Transformer has been previously added via its
- * addDecoration( Transformer transformer ) method then it should call the transform( E input ) 
- * method of that transformer.
- * <p>
- * This allows many Decorators to be chained together, each Decorator holding a reference to 
- * (decorating) the next Decorator. The last Decorator in the chain will not hold a reference to 
- * another Decorator.
+ * The execute method of Command in turn reads a map of attributes from the request; processes 
+ * them and creates a new map which is passes as an argument to the callback method 
+ * handleResponse(..) of the response.
  * 
- * @author John Dickerson - 20 February 2020
+ * @author John Dickerson - 21 Feb 2020
  */
-public interface Transformer<E> {
+public interface RequestProcessor {
 
     /**
-     * The implementation of this method should perform a transformation on the input.  If the 
-     * Transformer holds a reference to another Transformer it should then call transform( E input ) 
-     * on the Transformer.
+     * Delegates the request and response to a Command.  The request has a RequestType which 
+     * holds a reference to the Command.
      *
-     * @param input 
-     *     The input data to transform
-     *      
-     * @return data
-     *     The transformed data
-     */
-    public E transform( E input );
-
-
-    /**
-     * The implementation of this method needs to add a reference to the next transformer in 
-     * the chain.
+     * @param request 
+     *      The request holding a map of attributes and a RequestType which references the Command 
+     *      to execute.
      *
-     * @param transformer 
-     *     The next transformer in the chain.
+     * @param response 
+     *      The response which has a call back method called handleResponse(..) which a new map 
+     *      of processed attributes can be passed to.
      */
-    public void addDecoration( Transformer<E> transformer );
+    public void processRequest( Request request, Response response );
 }

@@ -63,7 +63,7 @@ package com.javaspeak.designpatterns.go4.behavioural.chainofresponsibility;
  * the Decorator pattern you can look at the code examples in the Decorator pattern 
  * (ApplicationDecorator).
  * 
- * @see com.javaspeak.designpatterns.go4.structural.decorator.ApplicationDecorator
+ * @see com.javaspeak.designpatterns.go4.structural.decorator.DecoratorApplication
  * 
  * @author John Dickerson - 21 February 2020
  */

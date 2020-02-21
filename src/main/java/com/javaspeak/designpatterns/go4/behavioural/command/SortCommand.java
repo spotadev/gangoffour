@@ -31,47 +31,51 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.structural.decorator;
+package com.javaspeak.designpatterns.go4.behavioural.command;
+
+import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
- * This interface is central to this example's Decorator pattern. This Transformer (Decorator) has 
- * a transform method which can transform data of type E.
- * <p>
- * The implementation of this Transformer interface can optionally decorate another Transformer.
- * <p>
- * What the decoration means is that the implementation of the transform( E input ) method should 
- * do its transformation on E and then if a Transformer has been previously added via its
- * addDecoration( Transformer transformer ) method then it should call the transform( E input ) 
- * method of that transformer.
- * <p>
- * This allows many Decorators to be chained together, each Decorator holding a reference to 
- * (decorating) the next Decorator. The last Decorator in the chain will not hold a reference to 
- * another Decorator.
+ * This Command class reads in a map of request attributes from the request and sorts them by the 
+ * attribute values and returns them in a new map which is passed to the handleResponse(..) method.
  * 
- * @author John Dickerson - 20 February 2020
+ * @author John Dickerson - 21 Feb 2020
  */
-public interface Transformer<E> {
+public class SortCommand implements Command {
 
     /**
-     * The implementation of this method should perform a transformation on the input.  If the 
-     * Transformer holds a reference to another Transformer it should then call transform( E input ) 
-     * on the Transformer.
-     *
-     * @param input 
-     *     The input data to transform
-     *      
-     * @return data
-     *     The transformed data
+     * A comparator that sorts the keys of the map according the values
+     * associated with each key
      */
-    public E transform( E input );
+    class ValueComparator implements Comparator<String> {
+
+        private Map<String, String> base;
+
+        public ValueComparator( Map<String, String> base ) {
+
+            this.base = base;
+        }
 
 
-    /**
-     * The implementation of this method needs to add a reference to the next transformer in 
-     * the chain.
-     *
-     * @param transformer 
-     *     The next transformer in the chain.
-     */
-    public void addDecoration( Transformer<E> transformer );
+        public int compare( String a, String b ) {
+
+            return base.get( a ).compareTo( base.get( b ) );
+        }
+    }
+
+
+    @Override
+    public void execute( Request request, Response response ) {
+
+        Map<String, String> requestAttributes = request.getRequestAttributes();
+
+        Map<String, String> responseAttributes =
+                new TreeMap<String, String>(
+                        new ValueComparator( requestAttributes ) );
+
+        responseAttributes.putAll( requestAttributes );
+        response.handleResponse( responseAttributes );
+    }
 }
