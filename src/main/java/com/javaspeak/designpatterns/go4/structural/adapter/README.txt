@@ -1,17 +1,17 @@
 ====================================================================================================
-README.txt for the Gang of Four, Behavioural Interpreter pattern
+README.txt for the Gang of Four, Structural Adapter pattern
 ====================================================================================================
 
 Please run the example by running:
 
-    InterpreterApplication
+    AdapterApplication
     
-InterpreterApplication has a main method.
+AdapterApplication has a main method.
 
-If you want to run InterpreterApplication from maven type:
+If you want to run AdapterApplication from maven type:
 
      mvn compile
-     mvn exec:java@interpreter
+     mvn exec:java@adapter
      
 Else you can run it from an IDE such as STS. A lot of SpotADev projects use STS as their 
 preferred Java IDE.  STS is a spring source version of the Eclipse IDE.  You can easily import 

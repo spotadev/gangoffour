@@ -138,6 +138,15 @@
                             <mainClass>com.javaspeak.designpatterns.go4.creational.abstractfactory.AbstractFactoryApplication</mainClass>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>builder</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.creational.builder.BuilderApplication</mainClass>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
