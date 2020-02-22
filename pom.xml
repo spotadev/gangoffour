@@ -109,6 +109,15 @@
                             <mainClass>com.javaspeak.designpatterns.go4.behavioural.strategy.StrategyApplication</mainClass>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>templatemethod</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.behavioural.templatemethod.TemplateMethodApplication</mainClass>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
