@@ -32,6 +32,7 @@
             mvn clean
             mvn exec:java@commnd
             mvn exec:java@interpreter
+            mvn exec:java@mediator
             etc
     -->
     <build>
@@ -57,6 +58,15 @@
                         </goals>
                         <configuration>
                             <mainClass>com.javaspeak.designpatterns.go4.behavioural.interpreter.InterpreterApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>mediator</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.behavioural.mediator.MediatorApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
