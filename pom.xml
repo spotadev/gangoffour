@@ -69,6 +69,15 @@
                             <mainClass>com.javaspeak.designpatterns.go4.behavioural.mediator.MediatorApplication</mainClass>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>memento</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.behavioural.memento.MementoApplication</mainClass>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
