@@ -88,6 +88,15 @@
                             <mainClass>com.javaspeak.designpatterns.go4.behavioural.observer.ObserverApplication</mainClass>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>state</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.behavioural.state.StateApplication</mainClass>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
