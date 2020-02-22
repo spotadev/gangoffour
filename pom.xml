@@ -33,7 +33,10 @@
             mvn exec:java@commnd
             mvn exec:java@interpreter
             mvn exec:java@mediator
+            mvn exec:java@memento
             mvn exec:java@observer
+            mvn exec:java@state
+            mvn exec:java@strategy
             etc
     -->
     <build>
@@ -95,6 +98,15 @@
                         </goals>
                         <configuration>
                             <mainClass>com.javaspeak.designpatterns.go4.behavioural.state.StateApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>strategy</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.behavioural.strategy.StrategyApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
