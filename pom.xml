@@ -37,6 +37,8 @@
             mvn exec:java@observer
             mvn exec:java@state
             mvn exec:java@strategy
+            mvn exec:java@templatemethod
+            mvn exec:java@visitor
             etc
     -->
     <build>
@@ -116,6 +118,15 @@
                         </goals>
                         <configuration>
                             <mainClass>com.javaspeak.designpatterns.go4.behavioural.templatemethod.TemplateMethodApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>visitor</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.behavioural.visitor.VisitorApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
