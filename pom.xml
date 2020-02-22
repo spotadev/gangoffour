@@ -129,6 +129,15 @@
                             <mainClass>com.javaspeak.designpatterns.go4.behavioural.visitor.VisitorApplication</mainClass>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>abstractfactory</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.creational.abstractfactory.AbstractFactoryApplication</mainClass>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
