@@ -31,43 +31,38 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
+package com.javaspeak.designpatterns.go4.structural.composite;
 
+import java.util.List;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
+ * Used to define the structure of composite and simple elements.
  * <p>
- * @author John Dickerson - 22 Feb 2020
+ * AbstractHtmlElement provides an implementation for getHtmlElements() but leaves getHtml() to be 
+ * implemented by parent classes.  Both TextElement and HtmlElement extend AbstractHtmlElement and 
+ * provide an implementation for getHtml() method.  HtmlElement is a composite element which can 
+ * itself be comprised of composite elements while TextElement is simple.  TextElement is simple 
+ * as it does not make use of getHtmlElements() in its getHtml() method.
+ *
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public interface HtmlElement {
 
     /**
-     * Draws Shapes
+     * Returns a list of HtmlElement. The calling code can call this method and a HtmlElement to 
+     * the end of the list
+     *
+     * @return List of HtmlElement
      */
-    public void draw() {
-
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
-    }
+    public List<HtmlElement> getHtmlElements();
 
 
-    public static void main( String[] args ) {
-
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
-    }
+    /**
+     * Returns the Html.  If the HtmlElement is a simple element it will not be using the 
+     * List<HtmlElement>, however if it is a composite element it will iterate through the child 
+     * HtmlElements and call getHtml() on each of them while building up the html to return.
+     *
+     * @return Html
+     */
+    public String getHtml();
 }

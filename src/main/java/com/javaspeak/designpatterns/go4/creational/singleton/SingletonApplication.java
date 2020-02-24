@@ -35,8 +35,29 @@ package com.javaspeak.designpatterns.go4.creational.singleton;
 
 
 /**
+ * Text book description:
+ * <ul>
+ *     Singleton: A class of which only a single instance can exist. Ensure a class only has one 
+ *     instance, and provide a global point of access to it.
+ * </ul>
+ * The Singleton ensures that only one copy of an instance exists in the same classloader.
+ *  
  * @author John Dickerson - 22 Feb 2020
  */
 public class SingletonApplication {
 
+    /**
+     * Retrieves instance from singleton; builds the square and draws it
+     */
+    public void drawSquare() {
+
+        ShapeManager.getInstance().buildSquare().draw();
+    }
+
+
+    public static void main( String[] args ) {
+
+        SingletonApplication application = new SingletonApplication();
+        application.drawSquare();
+    }
 }

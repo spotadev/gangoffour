@@ -31,43 +31,24 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
-
+package com.javaspeak.designpatterns.go4.structural.adapter;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
+ * This is the interface that the Application (ApplicationAdapter) expects to call.
  * <p>
- * @author John Dickerson - 22 Feb 2020
+ * There is no implementation for Square and we want to use the drawSquare() implementation of 
+ * Shape.
+ * <p>
+ * We create an adapter called ShapeAdapter which implements Square so that code in the Application 
+ * does not have to change.  Internally the ShapeAdapter makes a call to the drawSquare() method of 
+ * Shape.  Shape and ShapeImpl are legacy code.
+ *
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public interface Square {
 
     /**
-     * Draws Shapes
+     * This draw() method is called by the Application.
      */
-    public void draw() {
-
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
-    }
-
-
-    public static void main( String[] args ) {
-
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
-    }
+    public void draw();
 }

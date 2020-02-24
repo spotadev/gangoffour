@@ -31,43 +31,42 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
+package com.javaspeak.designpatterns.go4.structural.facade;
 
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * Implements an API to the outside world.  Internally the implementation of the getSquare() and 
+ * getTriangle() methods make method calls to internal interfaces.  A squareBuilder is used 
+ * internally to create the square to return and a triangleBuilder is used internally to create
+ * the triangle to return.
+ *
+ * @author John Dickerson - 23 Feb 2020
  */
-public class FactoryMethodApplication {
+public class ShapeFacadeImpl implements ShapeFacade {
+
+    private SquareBuilder squareBuilder;
+    private TriangleBuilder triangleBuilder;
 
     /**
-     * Draws Shapes
+     * Constructor
      */
-    public void draw() {
+    public ShapeFacadeImpl() {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+        squareBuilder = new SquareBuilderImpl();
+        triangleBuilder = new TriangleBuilderImpl();
     }
 
 
-    public static void main( String[] args ) {
+    @Override
+    public Square getSquare() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        return squareBuilder.buildSquare();
+    }
+
+
+    @Override
+    public Triangle getTriangle() {
+
+        return triangleBuilder.buildTriangle();
     }
 }

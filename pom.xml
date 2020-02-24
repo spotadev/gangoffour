@@ -39,6 +39,18 @@
             mvn exec:java@strategy
             mvn exec:java@templatemethod
             mvn exec:java@visitor
+            mvn exec:java@abstractfactory
+            mvn exec:java@builder
+            mvn exec:java@factorymethod
+            mvn exec:java@prototype
+            mvn exec:java@singleton
+            mvn exec:java@adapter
+            mvn exec:java@bridge
+            mvn exec:java@composite
+            mvn exec:java@decorator
+            mvn exec:java@facade
+            mvn exec:java@flyweight
+            mvn exec:java@proxy
             etc
     -->
     <build>
@@ -145,6 +157,96 @@
                         </goals>
                         <configuration>
                             <mainClass>com.javaspeak.designpatterns.go4.creational.builder.BuilderApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>factorymethod</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.creational.factorymethod.FactoryMethodApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>prototype</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.creational.prototype.PrototypeApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>singleton</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.creational.singleton.SingletonApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>adapter</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.structural.adapter.AdapterApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>bridge</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.structural.bridge.BridgeApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>composite</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.structural.composite.CompositeApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>decorator</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.structural.decorator.DecoratorApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>facade</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.structural.facade.FacadeApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>flyweight</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.structural.flyweight.FlyweightApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>proxy</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.javaspeak.designpatterns.go4.structural.proxy.ProxyApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>

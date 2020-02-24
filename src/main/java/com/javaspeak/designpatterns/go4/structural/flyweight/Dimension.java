@@ -31,43 +31,43 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
-
+package com.javaspeak.designpatterns.go4.structural.flyweight;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * Class used to capture largest dimensions necessary to accomodate all
+ * Shapes on the canvas
+ *
+ * @author John Dickerson - 23 Feb 2020
  */
-public class FactoryMethodApplication {
+public class Dimension {
+
+    private int width;
+    private int height;
 
     /**
-     * Draws Shapes
+     * Constructor
+     *
+     * @param width 
+     *      The max width of all the shapes
+     *      
+     * @param height 
+     *      The max height of all the shapes
      */
-    public void draw() {
+    public Dimension( int width, int height ) {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+        this.width = width;
+        this.height = height;
     }
 
 
-    public static void main( String[] args ) {
+    public int getWidth() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        return width;
+    }
+
+
+    public int getHeight() {
+
+        return height;
     }
 }

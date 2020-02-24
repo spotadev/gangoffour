@@ -31,43 +31,43 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
-
+package com.javaspeak.designpatterns.go4.structural.bridge;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
+ * This abstract bridge class wraps the ShapeBuilder. Calling buildShape() on AbstractShapeBridge 
+ * internally calls the buildShape() method of the underlying ShapeBuilder.
  * <p>
- * @author John Dickerson - 22 Feb 2020
+ * The idea with the bridge is that the implementation for the underlying ShapeBuilder can be 
+ * switched. This example is using a TriangleBuilder but the TriangleBuilder could be swapped for 
+ * another shape builder.
+ *
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public abstract class AbstractShapeBridge {
+
+    protected ShapeBuilder shapeBuilder;
 
     /**
-     * Draws Shapes
+     * Constructor
+     *
+     * The constructor allows the implementation for the ShapeBuilder to be passed in.
+     *
+     * @param shapeBuilder
      */
-    public void draw() {
+    public AbstractShapeBridge( ShapeBuilder shapeBuilder ) {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+        this.shapeBuilder = shapeBuilder;
     }
 
 
-    public static void main( String[] args ) {
+    /**
+     * Defines the API for building a shape.  Internally calls the shapeBuilder to build the shape.  
+     * Notice that the implementation for the shapeBuilder is pluggable.
+     *
+     * @return shape
+     */
+    public Shape buildShape() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        return shapeBuilder.buildShape();
     }
 }

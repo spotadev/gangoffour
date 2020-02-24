@@ -31,43 +31,38 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
+package com.javaspeak.designpatterns.go4.structural.bridge;
 
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
+ * This class extends the AbstractShapeBridge and adds functionality.
  * <p>
- * @author John Dickerson - 22 Feb 2020
+ * The added functionality is a drawShape() method
+ *
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public class ShapeBridgeImpl extends AbstractShapeBridge {
 
     /**
-     * Draws Shapes
+     * Constructor
      */
-    public void draw() {
+    public ShapeBridgeImpl() {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+        super( new TriangleBuilder() );
     }
 
 
-    public static void main( String[] args ) {
+    /**
+     * Provides additional method which application can call.
+     * <p>
+     * Extends functionality of AbstractShapeBridge
+     */
+    public void drawShape() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        System.out.println(
+                "Drawing a Shape using " + this.shapeBuilder.getClass().getName() );
+
+        this.buildShape().draw();
     }
+
 }

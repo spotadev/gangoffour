@@ -31,43 +31,38 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
+package com.javaspeak.designpatterns.go4.creational.prototype;
 
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public class ProtypeFactory {
 
-    /**
-     * Draws Shapes
-     */
-    public void draw() {
+    private static Map<ShapeType, Shape> shapeCache =
+            new EnumMap<ShapeType, Shape>( ShapeType.class );
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+    static {
+        shapeCache.put( ShapeType.SQUARE, new Square() );
+        shapeCache.put( ShapeType.TRIANGLE, new Triangle() );
     }
 
+    /**
+     * Retrieves a Shape from the map and clones it
+     *
+     * @param shapeType 
+            he kind of Shape to retrieve
+            
+     * @return the Shape
+     * 
+     * @throws CloneNotSupportedException 
+     *      Thrown if the the Shape does not implement Cloneable
+     */
+    public static Shape getShape( ShapeType shapeType )
+            throws CloneNotSupportedException {
 
-    public static void main( String[] args ) {
-
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        return ( Shape )shapeCache.get( shapeType ).clone();
     }
 }

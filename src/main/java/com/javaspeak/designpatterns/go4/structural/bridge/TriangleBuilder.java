@@ -31,43 +31,22 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
-
+package com.javaspeak.designpatterns.go4.structural.bridge;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
+ * The TriangleBuilder is pluggable ShapeBuilder in this Bridge pattern. It can be readily switched 
+ * for another ShapeBuilder.
  * <p>
- * @author John Dickerson - 22 Feb 2020
+ * ShapeBuilderImpl passes the TriangleBuilder to its super class, AbstractShapeBuilder via its 
+ * constructor.
+ *
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public class TriangleBuilder implements ShapeBuilder {
 
-    /**
-     * Draws Shapes
-     */
-    public void draw() {
+    @Override
+    public Shape buildShape() {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
-    }
-
-
-    public static void main( String[] args ) {
-
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        return new Triangle();
     }
 }

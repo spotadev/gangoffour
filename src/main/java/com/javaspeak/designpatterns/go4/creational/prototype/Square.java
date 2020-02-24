@@ -31,43 +31,24 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
+package com.javaspeak.designpatterns.go4.creational.prototype;
 
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public class Square extends Shape {
 
     /**
-     * Draws Shapes
+     * Constructor pretending to do some expensive initialisation
      */
-    public void draw() {
+    public Square() {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
-    }
-
-
-    public static void main( String[] args ) {
-
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        StringBuilder sb = new StringBuilder();
+        sb.append( "xxxxxxx\n" );
+        sb.append( "x     x\n" );
+        sb.append( "x     x\n" );
+        sb.append( "xxxxxxx\n" );
+        this.pixels = sb.toString();
     }
 }

@@ -35,8 +35,39 @@ package com.javaspeak.designpatterns.go4.structural.facade;
 
 
 /**
+ * Text book desciption:
+ * <ul>
+ *     Facade: A single class that represents an entire subsystem. Provide a unified interface to 
+ *     a set of interfaces in a system. Facade defines a higher-level interface that makes the 
+ *     subsystem easier to use.
+ * </ul>
+ * This example application invokes methods on the ShapeFacade.  The ShapeFacade provides an API 
+ * to the outside world.  Internally the ShapeFacade calls methods on other internal interfaces: 
+ * SquareBuilder and TriangleBuilder.
+ * <p>
  * @author John Dickerson - 22 Feb 2020
  */
 public class FacadeApplication {
 
+    /**
+     * Calls methods on the facade to retrieve shapes and prints them.
+     */
+    public void printShapes() {
+
+        ShapeFacade shapeFacade = new ShapeFacadeImpl();
+        System.out.println( shapeFacade.getSquare() );
+        System.out.println( shapeFacade.getTriangle() );
+    }
+
+
+    /**
+     * Main method
+     *
+     * @param args
+     */
+    public static void main( String[] args ) {
+
+        FacadeApplication application = new FacadeApplication();
+        application.printShapes();
+    }
 }

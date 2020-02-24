@@ -31,43 +31,52 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
-
+package com.javaspeak.designpatterns.go4.creational.singleton;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
+ * This class is a singleton. It has a private constructor so it cannot be instantiated directly 
+ * by other classes.  Instead it has a static block which initializes the instance which can then 
+ * be retrieved using a static getInstance() method.
  * <p>
- * @author John Dickerson - 22 Feb 2020
+ * Once the instance has been retrieved the buildSquare() method can be called on the instance.
+ *
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public class ShapeManager {
+
+    private final static ShapeManager instance;
+
+    static {
+        // static block used for initialization
+        instance = new ShapeManager();
+    }
 
     /**
-     * Draws Shapes
+     * Private constructor
      */
-    public void draw() {
+    private ShapeManager() {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
     }
 
 
-    public static void main( String[] args ) {
+    /**
+     * This method provides the only access to an instance of ShapeManager
+     *
+     * @return instance of ShapeManager
+     */
+    public static ShapeManager getInstance() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        return instance;
+    }
+
+
+    /**
+     * Instance method
+     *
+     * @return
+     */
+    public Square buildSquare() {
+
+        return new Square();
     }
 }

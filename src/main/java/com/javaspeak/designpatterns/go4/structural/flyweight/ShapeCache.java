@@ -31,43 +31,35 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
-
+package com.javaspeak.designpatterns.go4.structural.flyweight;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * ShapeCache is a flyweight factory that returns flyweight shapes.  There is only one instance of 
+ * each Shape and each Shape may be referenced by many CanvasElements.  This saves on memory.
+ *
+ * @author John Dickerson - 23 Feb 2020
  */
-public class FactoryMethodApplication {
+public class ShapeCache {
+
+    private static Shape square = new SquareImpl();
+    private static Shape triangle = new TriangleImpl();
 
     /**
-     * Draws Shapes
+     * @return 
+     *      SquareImpl
      */
-    public void draw() {
+    public static Shape getSquare() {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+        return square;
     }
 
 
-    public static void main( String[] args ) {
+    /**
+     * @return 
+     *      TriangleImpl
+     */
+    public static Shape getTriangle() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        return triangle;
     }
 }

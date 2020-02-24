@@ -33,10 +33,62 @@
 */
 package com.javaspeak.designpatterns.go4.structural.bridge;
 
-
 /**
+ * Text book description:
+ * <ul>
+ *     Bridge: Separates an object’s interface from its implementation. Decouple an abstraction 
+ *     from its implementation so that the two can vary independently.
+ * </ul>
+ * This application has an abstract class called AbstractShapeBridge which wraps ShapeBuilder so 
+ * that calling the buildShape() method of AbstractShapeBridge internally calls the buildShape() 
+ * method of the ShapeBuilder.
+ * <p>
+ * This wrapping allows the implementation of ShapeBuilder, currently TriangleBuilder, to be 
+ * readily switched for another implementation such as SquareBuilder.
+ * <p>
+ * The implementation of the ShapeBuilder is passed through the constructor of AbstractBridge.
+ * <p>
+ * BridgeImpl extends AbstractBridge and adds its own method, drawShape() to draw the shape.  
+ * Internally the drawShape() method makes a call to the buildShape() method in AbstractShapeBridge.
+ * <p>
+ * This pattern is pretty similar to the Adapter pattern.  Notice some differences though:
+ * <ul>
+ *     <li>
+ *          Adapter is more about wrapping a third party API so it can be used by the application 
+ *          API.
+ *      </li>
+ *     <li>
+ *          Bridge is more about having the ability to slot in different implementation.
+ *     </li>
+ *     <li>
+ *          The Bridge has an abstract class that wraps the implementation which is itself extended 
+ *          to add extra functionality (e.g. ShapeBridgeImpl.drawShape())
+ *     </li>
+ *     <li>
+ *          The Bridge pattern in this example can be considered to be a combination of the 
+ *          Strategy and Template patterns
+ *     </li>
+ * </ul>
  * @author John Dickerson - 22 Feb 2020
  */
 public class BridgeApplication {
 
+    /**
+     * Calls drawShape() on the bridge implementation
+     */
+    public void drawShape() {
+
+        ShapeBridgeImpl shapeBridge = new ShapeBridgeImpl();
+        shapeBridge.drawShape();
+    }
+
+
+    /**
+     * @param args
+     */
+    public static void main( String[] args ) {
+
+        BridgeApplication application = new BridgeApplication();
+        application.drawShape();
+    }
 }

@@ -35,39 +35,30 @@ package com.javaspeak.designpatterns.go4.creational.factorymethod;
 
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * Has factory methods for creating Squares and Triangles
+ *
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public class Drawing {
 
     /**
-     * Draws Shapes
+     * Create Squares
+     *
+     * @return Square
      */
-    public void draw() {
+    public Shape createSquare() {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+        return new Square();
     }
 
 
-    public static void main( String[] args ) {
+    /**
+     * Create Triangle
+     *
+     * @return Triangle
+     */
+    public Shape createTriangle() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        return new Triangle();
     }
 }

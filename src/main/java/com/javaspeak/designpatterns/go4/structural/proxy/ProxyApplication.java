@@ -33,10 +33,44 @@
 */
 package com.javaspeak.designpatterns.go4.structural.proxy;
 
-
 /**
+ * Text book description:
+ * <ul>
+ *     Proxy: An object representing another object. Provide a surrogate or placeholder for 
+ *     another object to control access to it.
+ * </ul>
+ * The proxy class in this example, TriangleProxy, proxies the TriangleShape Subject.  After 
+ * calling drawShape() on the subject it logs to System.out how many times the drawShape() 
+ * method has been called
+ * <p>
+ * The proxy pattern is similar to the decorator pattern.  One of the differences is that with 
+ * the Proxy pattern the relationship between a proxy and the subject is usually defined at 
+ * compile time, whereas with decorators the relationship between the decorator and the class 
+ * being decorated can be defined at runtime.
+ * <p>
+ * In our example the ShapeProxy counts and logs to System.out how many times the drawShape() 
+ * method has been called every time it is invoked.
+ * <p>
  * @author John Dickerson - 22 Feb 2020
  */
 public class ProxyApplication {
 
+    public void runExample() {
+
+        Shape triangleProxy = new TriangleProxy();
+        triangleProxy.drawShape();
+        triangleProxy.drawShape();
+    }
+
+
+    /**
+     * Main method
+     *
+     * @param args
+     */
+    public static void main( String[] args ) {
+
+        ProxyApplication application = new ProxyApplication();
+        application.runExample();
+    }
 }

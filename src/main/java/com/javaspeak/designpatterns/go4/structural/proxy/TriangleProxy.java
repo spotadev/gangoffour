@@ -31,43 +31,48 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
+package com.javaspeak.designpatterns.go4.structural.proxy;
 
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * @author John Dickerson - 23 Feb 2020
  */
-public class FactoryMethodApplication {
+/**
+ * This proxy class proxies the shape Subject.  After calling drawShape() on the subject it logs 
+ * to Systm.out how many times the drawShape() method has been called.
+ * <p>
+ * Note that the relationship to the subject is ususally determined at compile time with the proxy 
+ * pattern.
+ * <p>
+ * With the decorator pattern which is quite similar the relationship is usually defined at runtime.  
+ * A runtime relationship means that the class being decorated is passed in via a constructor or 
+ * setter and a compile time relationship means the proxy is hard coded to proxy a specific class.
+ * <p>
+ * Decorators are often chained together while proxies are not chained.
+ *
+ *  @author John Dickerson - 23 Feb 2020
+ */
+public class TriangleProxy implements Shape {
+
+    private Shape subject;
+    private int numberTimesInvoked;
 
     /**
-     * Draws Shapes
+     * Constructor
+     * <p>
+     * Instantiates subject we are proxying
      */
-    public void draw() {
+    public TriangleProxy() {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+        this.subject = new Triangle();
     }
 
 
-    public static void main( String[] args ) {
+    @Override
+    public void drawShape() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        this.subject.drawShape();
+        numberTimesInvoked++;
+        System.out.println( "drawShape() has been invoked " + numberTimesInvoked + " times" );
     }
 }

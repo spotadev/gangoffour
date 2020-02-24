@@ -31,43 +31,64 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
+package com.javaspeak.designpatterns.go4.structural.flyweight;
 
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * @author John Dickerson - 23 Feb 2020
  */
-public class FactoryMethodApplication {
+/**
+ * References Shape. Shape is a flyweight object which can be used by many CanvasElement instances.  
+ * The implementation for Shape encapsulates the data required to render the underlying shape.  
+ * Shape does not specify the coordinates of the Shape on the Canvas as different CanvasElements 
+ * are likely to position the shapes in different locations on the Canvas.  Instead CanvasElement 
+ * defines unique data such as the location of the Shape on the Canvas.
+ * <p>
+ * The Shape is integral to the flyweight pattern. Its data has been refactored out of CanvasElement 
+ * into the Shape implementation as it is identical data required by many instances.
+ *
+ * @author John Dickerson - 23 Feb 2020
+ */
+public class CanvasElement {
+
+    private Shape shape;
+    private int xcoordinate;
+    private int ycoordinate;
 
     /**
-     * Draws Shapes
+     * Constructor
+     *
+     * @param shape  
+     *      The flyweight instance to reference
+     *
+     * @param xcoordinate 
+     *      The X location of the Shape on the canvas
+     *
+     * @param ycoordinate 
+     *      The Y location of the Shape on the canvas
      */
-    public void draw() {
+    public CanvasElement( Shape shape, int xcoordinate, int ycoordinate ) {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+        this.shape = shape;
+        this.xcoordinate = xcoordinate;
+        this.ycoordinate = ycoordinate;
     }
 
 
-    public static void main( String[] args ) {
+    public Shape getShape() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        return shape;
+    }
+
+
+    public int getXcoordinate() {
+
+        return xcoordinate;
+    }
+
+
+    public int getYcoordinate() {
+
+        return ycoordinate;
     }
 }

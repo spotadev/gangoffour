@@ -31,43 +31,36 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
+package com.javaspeak.designpatterns.go4.structural.adapter;
 
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * This class is the adapter. We are providing a wrapper around Shape so that when we call draw() 
+ * internally we are calling shape.drawSquare()
+ *
+ * @author John Dickerson - 24 Feb 2020
+ *
  */
-public class FactoryMethodApplication {
+public class ShapeAdapter implements Square {
+
+    private Shape shape;
 
     /**
-     * Draws Shapes
+     * Constructor that wraps the Shape
+     *
+     * @param shape
      */
-    public void draw() {
+    public ShapeAdapter( Shape shape ) {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+        this.shape = shape;
     }
 
 
-    public static void main( String[] args ) {
+    @Override
+    public void draw() {
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        // The draw() method belongs to the Application API. It wraps the third party drawSquare() 
+        // method.
+        shape.drawSquare();
     }
 }

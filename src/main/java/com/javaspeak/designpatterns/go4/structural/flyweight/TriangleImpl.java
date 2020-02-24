@@ -31,43 +31,34 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
-
+package com.javaspeak.designpatterns.go4.structural.flyweight;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * Defines pixels for a Triangle
+ *
+ * @author John Dickerson - 23 Feb 2020
  */
-public class FactoryMethodApplication {
+public class TriangleImpl extends Shape {
 
-    /**
-     * Draws Shapes
-     */
-    public void draw() {
+    public TriangleImpl() {
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
-    }
+        //       1
+        //     1   1
+        //   1       1
+        // 1 1 1 1 1 1 1
 
-
-    public static void main( String[] args ) {
-
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
+        points = new int[4][7];
+        points[0][3] = 1;
+        points[1][2] = 1;
+        points[1][4] = 1;
+        points[2][1] = 1;
+        points[2][5] = 1;
+        points[3][0] = 1;
+        points[3][1] = 1;
+        points[3][2] = 1;
+        points[3][3] = 1;
+        points[3][4] = 1;
+        points[3][5] = 1;
+        points[3][6] = 1;
     }
 }

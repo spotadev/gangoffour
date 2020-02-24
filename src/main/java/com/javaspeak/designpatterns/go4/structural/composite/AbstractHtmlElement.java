@@ -31,43 +31,33 @@
     Author : John Dickerson
     ========================================================================================
 */
-package com.javaspeak.designpatterns.go4.creational.factorymethod;
+package com.javaspeak.designpatterns.go4.structural.composite;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Text book description:
- * <ul>
- *     "Factory Method: Creates an instance of several derived classes. Define an interface for 
- *     creating an object, but let subclasses decide which class to instantiate. Factory Method 
- *     lets a class defer instantiation to subclasses."
- * </ul>
- * Factory Methods in this example are createSquare() and createTriangle():
- * <pre>
- *      Drawing drawing = new Drawing();
- *      drawing.createSquare().draw();
- *      drawing.createTriangle().draw();
- * </pre>
- * createSquare() creates a Square instance and createTriangle() creates a Triangle instance.  
- * Both Square and Triangle implement Shape which has a draw() method.
- * <p>
- * @author John Dickerson - 22 Feb 2020
+ * Abstract class that implements HtmlElement to provide functionality for the getHtmlElements() 
+ * method.  Does not implement getHtml().  Both TableElement and TextElement extend 
+ * AbstractHtmlElement.  The reason TextElement extends AbstractHtmlElement is that a sub class of 
+ * TextElement may wish to become composite and make use of the list of <HtmlElement>.  For example 
+ * a more sophisticated implementation of TextElement may wish to include elements such as "bold" 
+ * and "underline".
+ *
+ * @author John Dickerson - 24 Feb 2020
  */
-public class FactoryMethodApplication {
+public abstract class AbstractHtmlElement implements HtmlElement {
 
-    /**
-     * Draws Shapes
-     */
-    public void draw() {
+    List<HtmlElement> htmlElements = new ArrayList<HtmlElement>();
 
-        Drawing drawing = new Drawing();
-        drawing.createSquare().draw();
-        drawing.createTriangle().draw();
+    @Override
+    public List<HtmlElement> getHtmlElements() {
+
+        return htmlElements;
     }
 
 
-    public static void main( String[] args ) {
+    @Override
+    public abstract String getHtml();
 
-        FactoryMethodApplication application = new FactoryMethodApplication();
-        application.draw();
-    }
 }
