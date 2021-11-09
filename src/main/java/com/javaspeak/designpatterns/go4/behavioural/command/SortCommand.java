@@ -61,7 +61,14 @@ public class SortCommand implements Command {
 
         public int compare( String a, String b ) {
 
-            return base.get( a ).compareTo( base.get( b ) );
+            int compare =  base.get( a ).compareTo( base.get( b ) );
+            
+            if ( compare == 0 ) {
+                
+                compare = 1;
+            }
+            
+            return compare;
         }
     }
 
